@@ -1,5 +1,7 @@
 # NTL6 Learning Kit
 
+[Tiếng Việt](README.vi.md) · [Full features](docs/FEATURES.md) · [English user guide](docs/USER_GUIDE.md) · [Hướng dẫn sử dụng](docs/HUONG_DAN_SU_DUNG.vi.md)
+
 **Learning support, grounded in evidence. Private learner records stay private.**
 
 NTL6 is a parent-guided AI education research-and-development project from HungLab. The public technical preview shares selected learning decision modules, a parent-console prototype, an offline manual-mode demo, and public educational Skills. The longer-term direction is to support learners as their needs change over many years.

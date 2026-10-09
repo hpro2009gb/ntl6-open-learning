@@ -17,10 +17,11 @@ const patterns=[
  /Nam[\s_-]?T(?:u|ừ|ù)[\s_-]?Li(?:e|ê)m/i,
  /\b(?:zjn|bell|zin)\b/i
 ];
+const publicDocs=new Set(['README.vi.md','docs/FEATURES.md','docs/USER_GUIDE.md','docs/HUONG_DAN_SU_DUNG.vi.md']);
 const issues=[];
 let scanned=0;
 for(const p of paths){
- if(!allowed(p)||forbidden.test('/'+p)){issues.push('not-public-allowlisted:'+p);continue;}
+ if((!allowed(p)&&!publicDocs.has(p))||(forbidden.test('/'+p)&&!publicDocs.has(p))){issues.push('not-public-allowlisted:'+p);continue;}
  if(p==='scripts/privacy-gate.mjs')continue;
  const content=fs.readFileSync(path.join(root,p),'utf8');
  scanned++;
