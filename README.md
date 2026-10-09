@@ -80,3 +80,7 @@ HungLab — independent AI and engineering initiative.
 This is a curated fresh public snapshot, **not** a publication of the complete private development tree or its Git history. The public snapshot includes a synthetic demonstration and a deliberately limited subset of project functionality.
 
 Licensed under MIT for the original content published in this repository. Third-party assets and copyrighted school materials are not included in the license grant.
+
+## Publish guard
+Before working with this public repository, run: git config core.hooksPath scripts
+The local pre-push hook runs the privacy gate. This is not a guarantee of perfect detection; review each release manually. No hosted CI billing is required.
