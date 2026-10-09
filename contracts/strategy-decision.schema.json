@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/STRATEGY_DECISION/1.0",
+  "title": "STRATEGY_DECISION/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version","decision_id","learner_id","concept_id","concept_scope","snapshot_id","evidence_ids","eligibility_ids","policy_version","hypotheses","unknowns","contrary_evidence_ids","need_action","scheduled_action","dose","authority_scope_ref","why","expected_change","recheck_condition","lifecycle","created_at"],
+  "properties": {
+    "contract_version": {"const":"STRATEGY_DECISION/1.0"},
+    "decision_id":{"type":"string","minLength":1},
+    "learner_id":{"type":"string","minLength":1},
+    "concept_id":{"type":"string","minLength":1},
+    "concept_scope":{"type":"string","minLength":1},
+    "snapshot_id":{"type":"string","minLength":1},
+    "evidence_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "eligibility_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "policy_version":{"type":"string","minLength":1},
+    "hypotheses":{"type":"array","items":{"type":"string","minLength":1}},
+    "unknowns":{"type":"array","items":{"type":"string","minLength":1}},
+    "contrary_evidence_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "need_action":{"enum":["DIAGNOSE","RETEACH","REPAIR","RECHECK","MAINTAIN","ADVANCE","PAUSE"]},
+    "scheduled_action":{"enum":["DIAGNOSE","RETEACH","REPAIR","RECHECK","MAINTAIN","ADVANCE","PAUSE"]},
+    "dose": {
+      "type":"object", "additionalProperties":false,
+      "required":["class","minutes"],
+      "properties": {
+        "class":{"enum":["REST","MICRO","NORMAL","DEEP"]},
+        "minutes":{"oneOf":[{"type":"integer","minimum":0,"maximum":180},{"const":"UNKNOWN"}]}
+      }
+    },
+    "authority_scope_ref":{"type":"string","minLength":1},
+    "why":{"type":"string","minLength":1},
+    "expected_change":{"type":"string","minLength":1},
+    "recheck_condition":{"type":"string","minLength":1},
+    "lifecycle":{"enum":["PROPOSED","PLANNED","DELIVERED","REVIEWED","CANCELLED"]},
+    "created_at":{"type":"string","format":"date-time"}
+  }
+}

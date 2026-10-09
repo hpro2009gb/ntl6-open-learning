@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/STRATEGY_OUTCOME/1.0",
+  "title": "STRATEGY_OUTCOME/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version","outcome_id","decision_id","intervention_id","learner_id","concept_id","policy_version","reviewed_at","status","expected_axes","axis_results","comparison_basis","known_contributors","limitations","interpretation","third_repeat_fuse"],
+  "properties": {
+    "contract_version":{"const":"STRATEGY_OUTCOME/1.0"},
+    "outcome_id":{"type":"string","minLength":1},
+    "decision_id":{"type":"string","minLength":1},
+    "intervention_id":{"type":"string","minLength":1},
+    "learner_id":{"type":"string","minLength":1},
+    "concept_id":{"type":"string","minLength":1},
+    "policy_version":{"type":"string","minLength":1},
+    "reviewed_at":{"type":"string","format":"date-time"},
+    "status":{"enum":["IMPROVED_ON_TARGET","NO_OBSERVED_CHANGE","WORSE_ON_TARGET","INCONCLUSIVE","NOT_DELIVERED"]},
+    "expected_axes":{"type":"array","uniqueItems":true,"items":{"enum":["ACCURACY","INDEPENDENCE","TRANSFER","RETENTION","FLUENCY","BURDEN"]}},
+    "axis_results": {
+      "type":"object", "additionalProperties":false,
+      "properties": {
+        "ACCURACY":{"enum":["IMPROVED","NO_OBSERVED_CHANGE","WORSE","INCONCLUSIVE","NOT_ASSESSED"]},
+        "INDEPENDENCE":{"enum":["IMPROVED","NO_OBSERVED_CHANGE","WORSE","INCONCLUSIVE","NOT_ASSESSED"]},
+        "TRANSFER":{"enum":["IMPROVED","NO_OBSERVED_CHANGE","WORSE","INCONCLUSIVE","NOT_ASSESSED"]},
+        "RETENTION":{"enum":["IMPROVED","NO_OBSERVED_CHANGE","WORSE","INCONCLUSIVE","NOT_ASSESSED"]},
+        "FLUENCY":{"enum":["IMPROVED","NO_OBSERVED_CHANGE","WORSE","INCONCLUSIVE","NOT_ASSESSED"]},
+        "BURDEN":{"enum":["IMPROVED","NO_OBSERVED_CHANGE","WORSE","INCONCLUSIVE","NOT_ASSESSED"]}
+      }
+    },
+    "comparison_basis":{"type":"string","minLength":1},
+    "known_contributors":{"type":"array","items":{"type":"string","minLength":1}},
+    "limitations":{"type":"array","items":{"type":"string","minLength":1}},
+    "interpretation":{"type":"string","minLength":1,"description":"Must use conditional/non-causal language for before/after observations."},
+    "third_repeat_fuse": {
+      "type":"object", "additionalProperties":false,
+      "required":["same_method_delivered_no_improvement_count","automatic_repeat_allowed","next_required_action"],
+      "properties": {
+        "same_method_delivered_no_improvement_count":{"type":"integer","minimum":0},
+        "automatic_repeat_allowed":{"type":"boolean"},
+        "next_required_action":{"enum":["NONE","DIAGNOSE","HUMAN_DECISION"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/EVIDENCE_ELIGIBILITY/1.0",
+  "title": "EVIDENCE_ELIGIBILITY/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version","eligibility_id","evidence_id","policy_version","evaluated_at","checks","rights","limitations","reason_codes"],
+  "properties": {
+    "contract_version": {"const":"EVIDENCE_ELIGIBILITY/1.0"},
+    "eligibility_id": {"type":"string","minLength":1},
+    "evidence_id": {"type":"string","minLength":1},
+    "policy_version": {"type":"string","minLength":1},
+    "evaluated_at": {"type":"string","format":"date-time"},
+    "checks": {
+      "type":"object", "additionalProperties":false,
+      "required":["provenance_traceable","target_mapping_valid","item_rubric_trustworthy","grading_sufficient","help_retry_exposure_sufficient","novelty_independence_sufficient","duplicate_excluded","active_status"],
+      "properties": {
+        "provenance_traceable":{"enum":["PASS","FAIL","UNKNOWN"]},
+        "target_mapping_valid":{"enum":["PASS","FAIL","UNKNOWN"]},
+        "item_rubric_trustworthy":{"enum":["PASS","FAIL","UNKNOWN"]},
+        "grading_sufficient":{"enum":["PASS","FAIL","UNKNOWN"]},
+        "help_retry_exposure_sufficient":{"enum":["PASS","FAIL","UNKNOWN"]},
+        "novelty_independence_sufficient":{"enum":["PASS","FAIL","UNKNOWN"]},
+        "duplicate_excluded":{"enum":["PASS","FAIL","UNKNOWN"]},
+        "active_status":{"enum":["PASS","FAIL","UNKNOWN"]}
+      }
+    },
+    "rights": {
+      "type":"object", "additionalProperties":false,
+      "required":["CONTEXT_OK","ASSISTED_PROGRESS_OK","INDEPENDENCE_OK","TRANSFER_OK","RETENTION_OK"],
+      "properties": {
+        "CONTEXT_OK":{"enum":["GRANTED","DENIED","HELD"]},
+        "ASSISTED_PROGRESS_OK":{"enum":["GRANTED","DENIED","HELD"]},
+        "INDEPENDENCE_OK":{"enum":["GRANTED","DENIED","HELD"]},
+        "TRANSFER_OK":{"enum":["GRANTED","DENIED","HELD"]},
+        "RETENTION_OK":{"enum":["GRANTED","DENIED","HELD"]}
+      }
+    },
+    "limitations":{"type":"array","items":{"type":"string","minLength":1}},
+    "reason_codes":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":1}}
+  }
+}

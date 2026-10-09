@@ -1,0 +1,15 @@
+{
+  "name": "ntl6-learning-kit",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Parent-guided learning decisions and local synthetic demonstrations",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "demo": "node tools/manual-mode/run.mjs examples/manual-pack",
+    "privacy": "node scripts/privacy-gate.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

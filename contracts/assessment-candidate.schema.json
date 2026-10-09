@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/ASSESSMENT_CANDIDATE/1.0",
+  "title": "ASSESSMENT_CANDIDATE/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "assessment_id",
+    "request_ref",
+    "selected_items",
+    "generated_items",
+    "shortage",
+    "exposure_checks",
+    "validation_refs",
+    "estimated_minutes",
+    "status"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "ASSESSMENT_CANDIDATE/1.0"
+    },
+    "assessment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selected_items": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "generated_items": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "shortage": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exposure_checks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "validation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "estimated_minutes": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 240
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "PARENT_PREVIEW",
+        "READY",
+        "BLOCKED"
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "fixture_id": "T2-F02-UNKNOWN-HELP-EXTERNAL",
+  "purpose": "An aggregate external report with unknown help/retry conditions: usable as context only, not as independence/transfer/retention proof.",
+  "evidence": {
+    "contract_version": "EVIDENCE_OPPORTUNITY/1.0",
+    "evidence_id": "ev-f02",
+    "session_id": "assessment-synth-uniclass-001",
+    "opportunity_id": "opp-synth-external-aggregate-001",
+    "learner_id": "learner-synthetic-A",
+    "source_identity": {"origin_id":"uniclass-report-synth-001","reporting_channel":"UNICLASS","dedup_key":"synthetic-uniclass-001"},
+    "observed_at": "UNKNOWN",
+    "imported_at": "2026-09-02T08:00:00+07:00",
+    "timezone": "Asia/Bangkok",
+    "provenance": {"source_kind":"UNICLASS","raw_ref":"synthetic://uniclass/report/001","raw_locator":"summary:grammar-score","capture_completeness":"PARTIAL"},
+    "target": {"concept_id":"UNMAPPED","concept_version":"UNKNOWN","item_id":"UNKNOWN","item_family":"UNKNOWN","rubric_ref":"UNKNOWN","rubric_version":"UNKNOWN","scope":"External aggregate Grammar score 95%","relative_difficulty":"UNKNOWN"},
+    "result": {"response_ref":"synthetic://uniclass/aggregate/95-percent","criterion_result":"UNRESOLVED","grader":"external-platform","grading_verification_status":"UNRESOLVED"},
+    "help": {"level":"UNKNOWN","source":"UNKNOWN","timing":"UNKNOWN","observation_basis":"External aggregate report does not expose assistance conditions."},
+    "attempt": {"first_attempt":"UNKNOWN","retry_relation":"UNKNOWN","answer_exposure":"UNKNOWN"},
+    "conditions": {"time_limit":"UNKNOWN","interruption":"UNKNOWN","fatigue":"UNKNOWN","response_modality":"UNKNOWN"},
+    "thinking_tags": [],
+    "interpretation": {"error_hypothesis":"UNKNOWN","evidence_span":"summary:grammar-score","transfer_type":"UNKNOWN","origin":"AI","status":"UNRESOLVED","interpretation_version":"interp-1"},
+    "data_status": {"status":"ACTIVE","supersedes_id":"NOT_APPLICABLE","reason":"External aggregate preserved without fabricated item detail","actor":"SYSTEM_OPERATOR","changed_at":"NOT_APPLICABLE"}
+  },
+  "eligibility": {
+    "contract_version": "EVIDENCE_ELIGIBILITY/1.0",
+    "eligibility_id": "elig-f02",
+    "evidence_id": "ev-f02",
+    "policy_version": "ntl6-policy-1.0",
+    "evaluated_at": "2026-09-02T08:01:00+07:00",
+    "checks": {"provenance_traceable":"PASS","target_mapping_valid":"UNKNOWN","item_rubric_trustworthy":"UNKNOWN","grading_sufficient":"UNKNOWN","help_retry_exposure_sufficient":"UNKNOWN","novelty_independence_sufficient":"UNKNOWN","duplicate_excluded":"PASS","active_status":"PASS"},
+    "rights": {"CONTEXT_OK":"GRANTED","ASSISTED_PROGRESS_OK":"DENIED","INDEPENDENCE_OK":"DENIED","TRANSFER_OK":"DENIED","RETENTION_OK":"DENIED"},
+    "limitations": ["No item detail.","Help/retry/exposure unknown.","Observed date unknown."],
+    "reason_codes": ["EXTERNAL_AGGREGATE_CONTEXT_ONLY","UNKNOWN_HELP_RETRY"]
+  }
+}

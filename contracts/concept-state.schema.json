@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/CONCEPT_STATE/1.0",
+  "title": "CONCEPT_STATE/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version","state_id","learner_id","concept","demonstration","transfer","retention","concern","decision_basis"],
+  "properties": {
+    "contract_version": {"const":"CONCEPT_STATE/1.0"},
+    "state_id": {"type":"string","minLength":1},
+    "learner_id": {"type":"string","minLength":1},
+    "concept": {
+      "type":"object", "additionalProperties":false,
+      "required":["concept_id","concept_version","subject","scope","rubric_ref","prerequisite_ids"],
+      "properties": {
+        "concept_id":{"type":"string","minLength":1},
+        "concept_version":{"type":"string","minLength":1},
+        "subject":{"enum":["MATH","VIETNAMESE","ENGLISH","OTHER"]},
+        "scope":{"type":"string","minLength":1},
+        "rubric_ref":{"type":"string","minLength":1},
+        "prerequisite_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}}
+      }
+    },
+    "demonstration": {
+      "type":"object", "additionalProperties":false,
+      "required":["status","evidence_ids","observed_dates","covered_variants"],
+      "properties": {
+        "status":{"enum":["UNKNOWN","ASSISTED_ONLY","INDEPENDENT_OBSERVED","INDEPENDENT_CONFIRMED"]},
+        "evidence_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+        "observed_dates":{"type":"array","items":{"type":"string","minLength":1}},
+        "covered_variants":{"type":"array","items":{"type":"string","minLength":1}}
+      }
+    },
+    "transfer": {
+      "type":"object", "additionalProperties":false,
+      "required":["status","evidence_ids","covered_scope","meaningful_variants"],
+      "properties": {
+        "status":{"enum":["NOT_CHECKED","OBSERVED","CONFIRMED_IN_SCOPE"]},
+        "evidence_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+        "covered_scope":{"type":"string","minLength":1},
+        "meaningful_variants":{"type":"array","items":{"type":"string","minLength":1}}
+      }
+    },
+    "retention": {
+      "type":"object", "additionalProperties":false,
+      "required":["status","evidence_ids","last_known_exposure_at","delay_description","intervening_practice"],
+      "properties": {
+        "status":{"enum":["NOT_CHECKED","CHECK_PENDING","OBSERVED_AT_DELAY","CONCERN"]},
+        "evidence_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+        "last_known_exposure_at":{"type":"string","minLength":1},
+        "delay_description":{"type":"string","minLength":1},
+        "intervening_practice":{"enum":["NONE_KNOWN","KNOWN","UNKNOWN"]}
+      }
+    },
+    "concern": {
+      "type":"object", "additionalProperties":false,
+      "required":["status","mechanism","evidence_ids","conflict_ids"],
+      "properties": {
+        "status":{"enum":["NONE_OBSERVED","SIGNAL","REPEATED_PATTERN","CONFLICT"]},
+        "mechanism":{"enum":["CONCEPT_GAP","PREREQUISITE_GAP","PROCEDURE_ERROR","STRATEGY","MISREAD_QUESTION","CALCULATION_ERROR","LANGUAGE_CONFUSION","CARELESS_ERROR","TIME","UNKNOWN"]},
+        "evidence_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+        "conflict_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}}
+      }
+    },
+    "decision_basis": {
+      "type":"object", "additionalProperties":false,
+      "required":["snapshot_id","as_of","policy_version","evidence_ids","eligibility_ids","limitations","conflicts","next_check_reason"],
+      "properties": {
+        "snapshot_id":{"type":"string","minLength":1},
+        "as_of":{"type":"string","format":"date-time"},
+        "policy_version":{"type":"string","minLength":1},
+        "evidence_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+        "eligibility_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+        "limitations":{"type":"array","items":{"type":"string","minLength":1}},
+        "conflicts":{"type":"array","items":{"type":"string","minLength":1}},
+        "next_check_reason":{"type":"string","minLength":1}
+      }
+    }
+  },
+  "not": {
+    "anyOf": [
+      {"required":["mastery_percentage"]},
+      {"required":["mastery_score"]}
+    ]
+  }
+}

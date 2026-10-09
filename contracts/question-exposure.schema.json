@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/QUESTION_EXPOSURE/1.0",
+  "title": "QUESTION_EXPOSURE/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "exposure_id",
+    "learner_id",
+    "assessment_id",
+    "item_id",
+    "family_signature",
+    "purpose",
+    "exposure_type",
+    "help_level",
+    "answer_exposure",
+    "occurred_at",
+    "source_ref"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "QUESTION_EXPOSURE/1.0"
+    },
+    "exposure_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "learner_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assessment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "item_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family_signature": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "enum": [
+        "DIAGNOSTIC",
+        "PRACTICE",
+        "REPAIR",
+        "FRESH_RECHECK",
+        "WEEKLY_CHECK",
+        "MOCK"
+      ]
+    },
+    "exposure_type": {
+      "enum": [
+        "PREVIEWED_TO_PARENT",
+        "ASSIGNED_TO_LEARNER",
+        "SUBMITTED",
+        "HELPED",
+        "ANSWER_EXPOSED",
+        "RECHECK_USED"
+      ]
+    },
+    "help_level": {
+      "enum": [
+        "NONE_OBSERVED",
+        "GENERAL_PROMPT",
+        "TARGET_HINT",
+        "WORKED_STEP_OR_ANSWER",
+        "UNKNOWN"
+      ]
+    },
+    "answer_exposure": {
+      "enum": [
+        "NONE_OBSERVED",
+        "PARTIAL",
+        "WORKED_ANSWER",
+        "UNKNOWN"
+      ]
+    },
+    "occurred_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_ref": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

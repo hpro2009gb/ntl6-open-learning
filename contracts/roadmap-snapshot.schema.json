@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/ROADMAP_SNAPSHOT/1.0",
+  "title": "ROADMAP_SNAPSHOT/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "snapshot_id",
+    "learner_id",
+    "as_of",
+    "baseline_ref",
+    "target_model_ref",
+    "journey_stage",
+    "subject_states",
+    "gaps",
+    "achievements",
+    "strategy_summary",
+    "unknowns",
+    "source_record_ids",
+    "policy_version"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "ROADMAP_SNAPSHOT/1.0"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "learner_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of": {
+      "type": "string",
+      "minLength": 1
+    },
+    "baseline_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_model_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "journey_stage": {
+      "enum": [
+        "KHOI_DONG",
+        "XAY_NEN",
+        "HOAN_THIEN_LOP_5",
+        "VAN_DUNG",
+        "LUYEN_MUC_TIEU_NTL6",
+        "THI_THU_ON_DINH"
+      ]
+    },
+    "subject_states": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "achievements": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "strategy_summary": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_record_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

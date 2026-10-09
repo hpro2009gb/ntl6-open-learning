@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/CANONICAL_LEDGER_RECORD/1.0",
+  "title": "CANONICAL_LEDGER_RECORD/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ledger_record_version","record_id","record_type","schema_ref","idempotency_key","dedup_key","occurred_at","appended_at","revision","supersedes_record_id","payload"],
+  "properties": {
+    "ledger_record_version": {"const":"CANONICAL_LEDGER_RECORD/1.0"},
+    "record_id": {"type":"string","minLength":1},
+    "record_type": {"enum":["EVIDENCE_OPPORTUNITY","EVIDENCE_ELIGIBILITY","CONCEPT_STATE","STRATEGY_DECISION","DELIVERED_INTERVENTION","STRATEGY_OUTCOME","LEDGER_CORRECTION"]},
+    "schema_ref": {"type":"string","minLength":1},
+    "idempotency_key": {"type":"string","minLength":1},
+    "dedup_key": {"type":"string","minLength":1},
+    "occurred_at": {"oneOf":[{"type":"string","format":"date-time"},{"const":"UNKNOWN"}]},
+    "appended_at": {"type":"string","format":"date-time"},
+    "revision": {"type":"integer","minimum":1},
+    "supersedes_record_id": {"type":"string","minLength":1},
+    "payload": {"type":"object"}
+  },
+  "allOf": [
+    {"if":{"properties":{"record_type":{"const":"EVIDENCE_OPPORTUNITY"}}},"then":{"properties":{"schema_ref":{"const":"EVIDENCE_OPPORTUNITY/1.0"},"payload":{"$ref":"https://ntl6.local/contracts/EVIDENCE_OPPORTUNITY/1.0"}}}},
+    {"if":{"properties":{"record_type":{"const":"EVIDENCE_ELIGIBILITY"}}},"then":{"properties":{"schema_ref":{"const":"EVIDENCE_ELIGIBILITY/1.0"},"payload":{"$ref":"https://ntl6.local/contracts/EVIDENCE_ELIGIBILITY/1.0"}}}},
+    {"if":{"properties":{"record_type":{"const":"CONCEPT_STATE"}}},"then":{"properties":{"schema_ref":{"const":"CONCEPT_STATE/1.0"},"payload":{"$ref":"https://ntl6.local/contracts/CONCEPT_STATE/1.0"}}}},
+    {"if":{"properties":{"record_type":{"const":"STRATEGY_DECISION"}}},"then":{"properties":{"schema_ref":{"const":"STRATEGY_DECISION/1.0"},"payload":{"$ref":"https://ntl6.local/contracts/STRATEGY_DECISION/1.0"}}}},
+    {"if":{"properties":{"record_type":{"const":"DELIVERED_INTERVENTION"}}},"then":{"properties":{"schema_ref":{"const":"DELIVERED_INTERVENTION/1.0"},"payload":{"$ref":"https://ntl6.local/contracts/DELIVERED_INTERVENTION/1.0"}}}},
+    {"if":{"properties":{"record_type":{"const":"STRATEGY_OUTCOME"}}},"then":{"properties":{"schema_ref":{"const":"STRATEGY_OUTCOME/1.0"},"payload":{"$ref":"https://ntl6.local/contracts/STRATEGY_OUTCOME/1.0"}}}},
+    {"if":{"properties":{"record_type":{"const":"LEDGER_CORRECTION"}}},"then":{"properties":{"schema_ref":{"const":"LEDGER_CORRECTION/1.0"},"payload":{"$ref":"https://ntl6.local/contracts/LEDGER_CORRECTION/1.0"}}}}
+  ]
+}

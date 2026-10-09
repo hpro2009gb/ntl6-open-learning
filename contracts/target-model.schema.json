@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/NTL6_TARGET_MODEL/1.0",
+  "title": "NTL6_TARGET_MODEL/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "target_model_id",
+    "version",
+    "as_of",
+    "target_school",
+    "target_year",
+    "status",
+    "official_facts",
+    "historical_pattern_evidence",
+    "subject_requirements",
+    "skill_item_family_matrix",
+    "unknowns",
+    "source_refs",
+    "authority_ceiling"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "NTL6_TARGET_MODEL/1.0"
+    },
+    "target_model_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_school": {
+      "const": "Sample Middle School"
+    },
+    "target_year": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "PROVISIONAL",
+        "CURRENT_EVIDENCE_BACKED",
+        "REVALIDATION_REQUIRED",
+        "SUPERSEDED"
+      ]
+    },
+    "official_facts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "historical_pattern_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "subject_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "skill_item_family_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "authority_ceiling": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

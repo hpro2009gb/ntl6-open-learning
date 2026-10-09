@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/PARENT_DASHBOARD/1.0",
+  "title": "PARENT_DASHBOARD/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "learner_id",
+    "as_of",
+    "goal",
+    "journey_stage",
+    "target_model",
+    "subjects",
+    "priority_action",
+    "warnings"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "PARENT_DASHBOARD/1.0"
+    },
+    "learner_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal": {
+      "const": "Đỗ NTL6 2027"
+    },
+    "journey_stage": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "status"
+      ],
+      "properties": {
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "PROVISIONAL",
+            "CURRENT_EVIDENCE_BACKED",
+            "REVALIDATION_REQUIRED",
+            "SUPERSEDED"
+          ]
+        }
+      }
+    },
+    "subjects": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "subject",
+          "start_state",
+          "current_state",
+          "achievements",
+          "main_gap",
+          "trend",
+          "strategy",
+          "next_action",
+          "evidence_status"
+        ],
+        "properties": {
+          "subject": {
+            "enum": [
+              "MATH",
+              "VIETNAMESE",
+              "ENGLISH"
+            ]
+          },
+          "start_state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "current_state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "achievements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "main_gap": {
+            "type": "string",
+            "minLength": 1
+          },
+          "trend": {
+            "type": "string",
+            "minLength": 1
+          },
+          "strategy": {
+            "type": "string",
+            "minLength": 1
+          },
+          "next_action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_status": {
+            "enum": [
+              "SUFFICIENT",
+              "INSUFFICIENT",
+              "CONFLICT"
+            ]
+          }
+        }
+      }
+    },
+    "priority_action": {
+      "type": "object"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

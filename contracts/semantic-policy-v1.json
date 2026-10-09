@@ -1,0 +1,57 @@
+{
+  "policy_contract_version": "NTL6_SEMANTIC_POLICY/1.0",
+  "policy_version": "ntl6-policy-1.0",
+  "status": "INITIAL_OPERATIONAL_POLICY_NOT_SCIENTIFIC_GUARANTEE",
+  "actions": ["DIAGNOSE","RETEACH","REPAIR","RECHECK","MAINTAIN","ADVANCE","PAUSE"],
+  "independent_confirmation": {
+    "minimum_eligible_opportunities": 2,
+    "minimum_distinct_sessions": 2,
+    "minimum_meaningful_variants": 2,
+    "requires_fresh_or_recheck_or_transfer_style_opportunity": true,
+    "blocks_on_unresolved_material_conflict": true
+  },
+  "transfer_confirmation": {
+    "minimum_eligible_transfer_opportunities": 2,
+    "minimum_distinct_sessions": 2,
+    "minimum_meaningful_variants": 2,
+    "requires_scope_description": true,
+    "numeric_change_only_is_meaningful_variant": false,
+    "blocks_on_unresolved_material_conflict": true
+  },
+  "concern": {
+    "one_supported_error_may_create": "SIGNAL",
+    "repeated_pattern_minimum_sessions": 2,
+    "requires_non_duplicate_opportunities": true,
+    "repeated_error_alone_proves_concept_gap": false,
+    "repeated_error_alone_authorizes_reteach": false
+  },
+  "retention": {
+    "initial_state": "NOT_CHECKED",
+    "elapsed_time_alone_means_forgotten": false,
+    "unknown_intervening_practice_must_be_recorded": true
+  },
+  "strategy": {
+    "diagnose_before_recheck_when_mechanism_changes_intervention": true,
+    "pause_creates_debt": false,
+    "unknown_schedule_means_free_time": false,
+    "diagnose_and_recheck_consume_workload_budget": true,
+    "micro_is_dose_not_action": true
+  },
+  "outcome": {
+    "causal_claim_from_simple_before_after": false,
+    "same_method_delivered_no_improvement_before_auto_third_repeat_block": 2,
+    "cancelled_or_undelivered_counts_as_strategy_failure": false
+  },
+  "evidence": {
+    "unknown_becomes_none_by_default": false,
+    "same_origin_opportunity_counts_once": true,
+    "held_evidence_can_create_strong_or_adverse_state": false,
+    "aggregate_external_unknown_help_can_prove_independence": false,
+    "ai_wording_can_raise_evidence_authority": false
+  },
+  "replay": {
+    "accepted_normalized_interpretation_is_replay_input": true,
+    "old_raw_is_reinterpreted_by_ai_during_replay": false,
+    "new_ai_interpretation_is_append_revision": true
+  }
+}

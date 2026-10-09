@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/LEDGER_CORRECTION/1.0",
+  "title": "LEDGER_CORRECTION/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version","correction_id","target_record_id","action","reason","actor","created_at","replacement_record_id","affected_snapshot_ids","affected_decision_ids","rebuild_required"],
+  "properties": {
+    "contract_version":{"const":"LEDGER_CORRECTION/1.0"},
+    "correction_id":{"type":"string","minLength":1},
+    "target_record_id":{"type":"string","minLength":1},
+    "action":{"enum":["HOLD","RELEASE_HOLD","SUPERSEDE","RETRACT"]},
+    "reason":{"type":"string","minLength":1},
+    "actor":{"enum":["PARENT","HUMAN_REVIEWER","RULE","SYSTEM_OPERATOR"]},
+    "created_at":{"type":"string","format":"date-time"},
+    "replacement_record_id":{"type":"string","minLength":1},
+    "affected_snapshot_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "affected_decision_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "rebuild_required":{"type":"boolean"}
+  }
+}

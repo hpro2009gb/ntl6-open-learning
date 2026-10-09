@@ -1,0 +1,34 @@
+{
+  "fixture_id": "T2-F04-DUPLICATE-REIMPORT",
+  "purpose": "The same learner opportunity reported through re-import/photo summary must count once and must not create fake trend or transfer.",
+  "records": [
+    {
+      "record_label": "original",
+      "evidence_id": "ev-f04-a",
+      "session_id": "sess-synth-004",
+      "opportunity_id": "opp-synth-shared-004",
+      "origin_id": "worksheet-synth-004",
+      "reporting_channel": "AGENT_CHAT",
+      "dedup_key": "learner-synthetic-A|opp-synth-shared-004|worksheet-synth-004",
+      "idempotency_key": "import:agent:worksheet-synth-004:v1"
+    },
+    {
+      "record_label": "reimport",
+      "evidence_id": "ev-f04-b",
+      "session_id": "sess-synth-004",
+      "opportunity_id": "opp-synth-shared-004",
+      "origin_id": "worksheet-synth-004",
+      "reporting_channel": "PHOTO",
+      "dedup_key": "learner-synthetic-A|opp-synth-shared-004|worksheet-synth-004",
+      "idempotency_key": "import:photo:worksheet-synth-004:v1"
+    }
+  ],
+  "expected_contract_behavior": {
+    "independent_opportunity_count": 1,
+    "duplicate_detected": true,
+    "new_transfer_evidence": false,
+    "new_trend_evidence": false,
+    "history_preserved": true,
+    "reason_code": "SAME_ORIGIN_OPPORTUNITY_COUNTS_ONCE"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "contract_version": "CANONICAL_LEDGER/1.0",
+  "storage_profile": "FILE_JSONL_SINGLE_WRITER",
+  "canonical_streams": {
+    "evidence": "runtime-data/ledger/evidence.jsonl",
+    "decisions": "runtime-data/ledger/decisions.jsonl",
+    "interventions": "runtime-data/ledger/interventions.jsonl",
+    "outcomes": "runtime-data/ledger/outcomes.jsonl",
+    "corrections": "runtime-data/ledger/corrections.jsonl"
+  },
+  "record_schema": "contracts/ledger-record.schema.json",
+  "writer_policy": {
+    "mode": "SINGLE_WRITER_ENFORCED",
+    "append_only": true,
+    "in_place_update": false,
+    "partial_write_behavior": "FAIL_CLOSED_AND_MARK_STALE",
+    "publish_snapshot_behavior": "ATOMIC_REPLACE_AFTER_COMPLETE_REBUILD"
+  },
+  "idempotency": {
+    "required": true,
+    "key_scope": "record semantic operation",
+    "same_key_same_payload": "NO_OP_RETURN_EXISTING_RECORD",
+    "same_key_different_payload": "CONFLICT_STOP",
+    "blind_retry": false
+  },
+  "deduplication": {
+    "primary_identity": ["learner_id","opportunity_id","source_identity.origin_id","source_identity.dedup_key"],
+    "cross_channel_rule": "SAME_ORIGIN_OPPORTUNITY_COUNTS_ONCE",
+    "duplicate_records_remain_auditable": true,
+    "duplicate_may_create_new_independent_evidence": false
+  },
+  "revision_and_correction": {
+    "history_preserved": true,
+    "silent_overwrite": false,
+    "actions": ["HOLD","RELEASE_HOLD","SUPERSEDE","RETRACT"],
+    "supersession_requires_new_record": true,
+    "affected_state_rebuild_required_when_semantics_change": true,
+    "delivered_historical_decisions_remain_auditable": true
+  },
+  "snapshot_policy": {
+    "derived_only": true,
+    "canonical": false,
+    "required_metadata": ["snapshot_id","ledger_watermark","policy_version","built_at","source_record_ids"],
+    "stale_on_incomplete_rebuild": true,
+    "xlsx_is_export_only": true
+  },
+  "replay_policy": {
+    "input": "accepted_normalized_records_plus_policy_version",
+    "reinvoke_ai_for_old_raw": false,
+    "new_ai_interpretation": "APPEND_NEW_REVISION",
+    "same_accepted_records_and_policy_must_rebuild_same_current_state": true
+  },
+  "privacy": {
+    "real_child_raw_data_in_git": false,
+    "git_fixtures": "ANONYMIZED_SYNTHETIC_ONLY",
+    "learner_id_policy": "PSEUDONYMOUS"
+  },
+  "failure_policy": {
+    "write_error": "STOP_AND_SURFACE_ERROR",
+    "unknown_required_semantic": "STORE_UNKNOWN_NOT_INFERRED_DEFAULT",
+    "schema_mismatch": "REJECT_RECORD",
+    "unresolved_dispute": "HOLD_AFFECTED_EVIDENCE"
+  }
+}

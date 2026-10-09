@@ -1,0 +1,86 @@
+{
+  "contract_set": "NTL6_T2_SEMANTIC_CONTRACTS/1.0",
+  "policy_ref": "contracts/semantic-policy-v1.json",
+  "contracts": [
+    {
+      "id": "EVIDENCE_OPPORTUNITY/1.0",
+      "path": "contracts/evidence-opportunity.schema.json"
+    },
+    {
+      "id": "EVIDENCE_ELIGIBILITY/1.0",
+      "path": "contracts/evidence-eligibility.schema.json"
+    },
+    {
+      "id": "CONCEPT_STATE/1.0",
+      "path": "contracts/concept-state.schema.json"
+    },
+    {
+      "id": "STRATEGY_DECISION/1.0",
+      "path": "contracts/strategy-decision.schema.json"
+    },
+    {
+      "id": "DELIVERED_INTERVENTION/1.0",
+      "path": "contracts/delivered-intervention.schema.json"
+    },
+    {
+      "id": "STRATEGY_OUTCOME/1.0",
+      "path": "contracts/strategy-outcome.schema.json"
+    },
+    {
+      "id": "LEDGER_CORRECTION/1.0",
+      "path": "contracts/ledger-correction.schema.json"
+    },
+    {
+      "id": "CANONICAL_LEDGER_RECORD/1.0",
+      "path": "contracts/ledger-record.schema.json"
+    },
+    {
+      "id": "CANONICAL_LEDGER/1.0",
+      "path": "contracts/canonical-ledger.contract.json"
+    },
+    {
+      "id": "PARENT_DASHBOARD/1.0",
+      "path": "contracts/parent-dashboard.schema.json"
+    },
+    {
+      "id": "ASSESSMENT_REQUEST/1.0",
+      "path": "contracts/assessment-request.schema.json"
+    },
+    {
+      "id": "ASSESSMENT_CANDIDATE/1.0",
+      "path": "contracts/assessment-candidate.schema.json"
+    },
+    {
+      "id": "QUESTION_EXPOSURE/1.0",
+      "path": "contracts/question-exposure.schema.json"
+    },
+    {
+      "id": "QUESTION_LIFECYCLE_EVENT/1.0",
+      "path": "contracts/question-lifecycle-event.schema.json"
+    },
+    {
+      "id": "ROADMAP_SNAPSHOT/1.0",
+      "path": "contracts/roadmap-snapshot.schema.json"
+    },
+    {
+      "id": "NTL6_TARGET_MODEL/1.0",
+      "path": "contracts/target-model.schema.json"
+    }
+  ],
+  "fixtures": [
+    "data/fixtures/01-valid-independent.json",
+    "data/fixtures/02-unknown-help-external-context-only.json",
+    "data/fixtures/03-held-disputed-item.json",
+    "data/fixtures/04-duplicate-reimport.json",
+    "data/fixtures/05-correction-supersession.json",
+    "data/fixtures/06-decision-not-delivered.json"
+  ],
+  "non_goals": [
+    "No source material redistribution",
+    "No real learner records",
+    "No production hosted service",
+    "No autonomous learner mastery promotion"
+  ],
+  "release_profile": "PUBLIC_SYNTHETIC_R1",
+  "privacy_scope": "No real learner data or private operational documents"
+}

@@ -1,0 +1,35 @@
+{
+  "fixture_id": "T2-F03-HELD-DISPUTED",
+  "purpose": "An ambiguous item/grading dispute must remain auditable but cannot create a strong or adverse learner conclusion.",
+  "evidence": {
+    "contract_version": "EVIDENCE_OPPORTUNITY/1.0",
+    "evidence_id": "ev-f03",
+    "session_id": "sess-synth-003",
+    "opportunity_id": "opp-synth-003",
+    "learner_id": "learner-synthetic-A",
+    "source_identity": {"origin_id":"agent-chat-synth-003","reporting_channel":"AGENT_CHAT","dedup_key":"synthetic-origin-003"},
+    "observed_at": "2026-09-03T10:00:00+07:00",
+    "imported_at": "2026-09-03T10:05:00+07:00",
+    "timezone": "Asia/Bangkok",
+    "provenance": {"source_kind":"AGENT_CHAT","raw_ref":"synthetic://chat/003","raw_locator":"turns:20-24","capture_completeness":"FULL_VISIBLE_SCOPE"},
+    "target": {"concept_id":"VIETNAMESE.INFERENCE.EVIDENCE","concept_version":"1.0","item_id":"item-synth-ambiguous-003","item_family":"reading-inference","rubric_ref":"rubric://vi/inference","rubric_version":"1.0","scope":"Select textual detail supporting an inference","relative_difficulty":"GRADE5_CORE"},
+    "result": {"response_ref":"synthetic://response/003","criterion_result":"UNRESOLVED","grader":"ai-grader","grading_verification_status":"UNRESOLVED"},
+    "help": {"level":"NONE_OBSERVED","source":"NONE_OBSERVED","timing":"NOT_APPLICABLE","observation_basis":"No visible help in captured interaction; outside help unknown."},
+    "attempt": {"first_attempt":"YES","retry_relation":"FRESH","answer_exposure":"NONE_OBSERVED"},
+    "conditions": {"time_limit":"UNKNOWN","interruption":"NONE_OBSERVED","fatigue":"UNKNOWN","response_modality":"TEXT"},
+    "thinking_tags": ["FIND_EVIDENCE"],
+    "interpretation": {"error_hypothesis":"UNKNOWN","evidence_span":"turns:20-24","transfer_type":"UNKNOWN","origin":"AI","status":"UNRESOLVED","interpretation_version":"interp-1"},
+    "data_status": {"status":"HELD","supersedes_id":"NOT_APPLICABLE","reason":"Item wording and grading are disputed; do not update adverse state until reviewed.","actor":"HUMAN_REVIEWER","changed_at":"2026-09-03T10:06:00+07:00"}
+  },
+  "eligibility": {
+    "contract_version": "EVIDENCE_ELIGIBILITY/1.0",
+    "eligibility_id": "elig-f03",
+    "evidence_id": "ev-f03",
+    "policy_version": "ntl6-policy-1.0",
+    "evaluated_at": "2026-09-03T10:07:00+07:00",
+    "checks": {"provenance_traceable":"PASS","target_mapping_valid":"PASS","item_rubric_trustworthy":"UNKNOWN","grading_sufficient":"FAIL","help_retry_exposure_sufficient":"PASS","novelty_independence_sufficient":"PASS","duplicate_excluded":"PASS","active_status":"FAIL"},
+    "rights": {"CONTEXT_OK":"HELD","ASSISTED_PROGRESS_OK":"HELD","INDEPENDENCE_OK":"HELD","TRANSFER_OK":"HELD","RETENTION_OK":"HELD"},
+    "limitations": ["Item/rubric dispute unresolved."],
+    "reason_codes": ["HELD_GRADING_DISPUTE"]
+  }
+}

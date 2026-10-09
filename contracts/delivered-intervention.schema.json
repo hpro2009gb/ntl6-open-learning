@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/DELIVERED_INTERVENTION/1.0",
+  "title": "DELIVERED_INTERVENTION/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version","intervention_id","decision_id","learner_id","concept_id","mechanism_hypothesis","planned_method","planned_dose","actual_method","actual_dose","delivery_status","teacher","started_at","completed_at","modifications","concurrent_exposures","generated_evidence_ids"],
+  "properties": {
+    "contract_version": {"const":"DELIVERED_INTERVENTION/1.0"},
+    "intervention_id":{"type":"string","minLength":1},
+    "decision_id":{"type":"string","minLength":1},
+    "learner_id":{"type":"string","minLength":1},
+    "concept_id":{"type":"string","minLength":1},
+    "mechanism_hypothesis":{"type":"string","minLength":1},
+    "planned_method":{"type":"string","minLength":1},
+    "planned_dose":{"type":"string","minLength":1},
+    "actual_method":{"type":"string","minLength":1},
+    "actual_dose":{"type":"string","minLength":1},
+    "delivery_status":{"enum":["STARTED","COMPLETED","INTERRUPTED","NOT_DELIVERED"]},
+    "teacher":{"enum":["PARENT","AGENT","OTHER"]},
+    "started_at":{"oneOf":[{"type":"string","format":"date-time"},{"const":"NOT_APPLICABLE"}]},
+    "completed_at":{"oneOf":[{"type":"string","format":"date-time"},{"const":"NOT_APPLICABLE"}]},
+    "modifications":{"type":"array","items":{"type":"string","minLength":1}},
+    "concurrent_exposures":{"type":"array","items":{"type":"string","minLength":1}},
+    "generated_evidence_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}}
+  }
+}

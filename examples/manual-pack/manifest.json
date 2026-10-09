@@ -1,0 +1,42 @@
+{
+  "contract_version": "SESSION_EVIDENCE_PACK/1.0",
+  "pack_id": "demo-math-percent-reverse",
+  "learner_id": "learner-demo",
+  "policy_version": "ntl6-policy-1.0",
+  "timezone": "Asia/Bangkok",
+  "as_of": "2026-09-18T10:00:00+07:00",
+  "source_kind": "AGENT_CHAT",
+  "concepts": [
+    {
+      "concept_id": "MATH.PERCENT.REVERSE",
+      "concept_version": "1.0",
+      "subject": "MATH",
+      "display_name": "Toán · Tìm số ban đầu khi biết phần trăm",
+      "scope": "Solve one-step reverse percentage problem",
+      "rubric_ref": "rubric://math/percent-reverse",
+      "prerequisite_ids": [],
+      "rubric_authority": {
+        "status": "PARENT_APPROVED",
+        "rubric_ref": "rubric://math/percent-reverse",
+        "rubric_version": "1.0"
+      },
+      "planning": {
+        "active_target": true,
+        "parent_priority": "MEDIUM",
+        "exam_relevance": "HIGH",
+        "verification_due": false,
+        "retention_due": false,
+        "advance_scope_approved": true
+      }
+    }
+  ],
+  "workload": {
+    "day_type": "WEEKDAY",
+    "readiness": "NORMAL",
+    "external_load": "LOW",
+    "schedule_known": true,
+    "unusual_load": "NONE",
+    "supplemental_events_today": [],
+    "missed_prior_minutes": 0
+  }
+}

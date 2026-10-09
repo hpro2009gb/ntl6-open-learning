@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NTL6 · Bàn học của học sinh mẫu</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">Z</div>
+      <div>
+        <div class="brand-title">học sinh mẫu · Lớp 5</div>
+        <div class="brand-subtitle">Bàn học gia đình NTL6</div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div id="targetBadge" class="target-badge">NTL6 2027</div>
+      <button type="button" class="quiet-button" data-jump="advanced">Công cụ nâng cao</button>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Điều hướng chính">
+    <button data-view="todo" class="active">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l2 2 4-4M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+      <span>Cần làm</span>
+    </button>
+    <button data-view="materials">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5zM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5z"/></svg>
+      <span>Học liệu</span>
+    </button>
+    <button data-view="progress">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9m7 10V5m7 14v-7"/></svg>
+      <span>Tiến độ</span>
+    </button>
+  </nav>
+
+  <main>
+    <section id="todo" class="view active-view">
+      <header class="page-head">
+        <div>
+          <h1>Việc cần làm tiếp</h1>
+          <p>NTL6 chọn bước học từ bằng chứng hiện có. Ở đây chỉ hiển thị việc đã được chiến lược xác định.</p>
+        </div>
+        <button type="button" class="icon-button" id="refreshTodo" aria-label="Làm mới việc cần làm">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M19 11a7 7 0 0 0-12-4L4 11m1 2a7 7 0 0 0 12 4l3-4"/></svg>
+        </button>
+      </header>
+      <div id="todoContent" class="loading-state">Đang xác định bước học phù hợp…</div>
+    </section>
+
+    <section id="materials" class="view">
+      <header class="page-head">
+        <div>
+          <h1>Học liệu</h1>
+          <p>Tìm đúng bài theo môn, ngày, loại và trạng thái. Kết quả luôn trỏ về file canonical của NTL6.</p>
+        </div>
+      </header>
+
+      <form id="materialSearchForm" class="material-toolbar">
+        <label class="search-field">
+          <span class="sr-only">Tìm học liệu</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+          <input id="materialQuery" placeholder="Tìm bài cho học sinh mẫu… ví dụ: present simple, baseline Toán">
+          <button type="submit" class="primary">Tìm</button>
+        </label>
+
+        <div class="filter-grid">
+          <label>Môn
+            <select id="materialSubject">
+              <option value="">Tất cả</option>
+              <option value="MATH">Toán</option>
+              <option value="VIETNAMESE">Tiếng Việt</option>
+              <option value="ENGLISH">Tiếng Anh</option>
+              <option value="MULTI">Nhiều môn</option>
+            </select>
+          </label>
+          <label>Ngày
+            <select id="materialDatePreset">
+              <option value="">Tất cả</option>
+              <option value="today">Hôm nay</option>
+              <option value="7">7 ngày gần đây</option>
+              <option value="30">30 ngày gần đây</option>
+              <option value="custom">Chọn khoảng ngày</option>
+            </select>
+          </label>
+          <label>Loại
+            <select id="materialKind">
+              <option value="">Tất cả</option>
+              <option value="LESSON">Bài giảng</option>
+              <option value="PRACTICE">Bài luyện</option>
+              <option value="TEST">Bài kiểm tra</option>
+              <option value="SUBMISSION">Bài đã làm</option>
+              <option value="GRADING">Kết quả chấm</option>
+            </select>
+          </label>
+          <label>Trạng thái
+            <select id="materialStatus">
+              <option value="">Tất cả</option>
+              <option value="NEEDS_TEACHING">Cần dạy</option>
+              <option value="READY_FOR_LEARNER">Con cần làm</option>
+              <option value="WAITING_FOR_GRADING">Chờ chấm</option>
+              <option value="COMPLETED">Đã hoàn thành</option>
+              <option value="BLOCKED_OR_WAITING">Đang chờ</option>
+              <option value="MATERIAL_MISSING">Thiếu file</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="customDateRange" class="custom-date-range hidden">
+          <label>Từ ngày <input id="materialDateFrom" type="date"></label>
+          <label>Đến ngày <input id="materialDateTo" type="date"></label>
+        </div>
+
+        <details class="secondary-filters">
+          <summary>Lọc thêm</summary>
+          <div class="filter-grid secondary-grid">
+            <label>Dành cho
+              <select id="materialAudience">
+                <option value="">Tất cả</option>
+                <option value="LEARNER">Con / học sinh</option>
+                <option value="AI_TEACHER">AI dạy</option>
+                <option value="PARENT_GRADER">Phụ huynh / người chấm</option>
+              </select>
+            </label>
+            <label>Nguồn
+              <select id="materialProvenance">
+                <option value="">Tất cả</option>
+                <option value="CTGDPT">CTGDPT</option>
+                <option value="SGK">SGK</option>
+                <option value="OFFICIAL_SCHOOL">Nguồn trường chính thức</option>
+                <option value="HISTORICAL_REPORTED">Đề lịch sử / báo cáo</option>
+                <option value="PRACTICE_MOCK">Đề tham khảo / mô phỏng</option>
+                <option value="ORIGINAL_GENERATED">Bài mới do NTL6 sinh</option>
+                <option value="UNKNOWN">Chưa rõ nguồn</option>
+              </select>
+            </label>
+          </div>
+        </details>
+
+        <div class="toolbar-actions">
+          <button type="submit" class="primary">Áp dụng</button>
+          <button type="button" id="materialReset">Xóa lọc</button>
+        </div>
+      </form>
+
+      <div id="materialSummary" class="result-summary" aria-live="polite"></div>
+      <div id="materialContent" class="loading-state">Đang tải học liệu…</div>
+      <div id="materialDetail"></div>
+    </section>
+
+    <section id="progress" class="view">
+      <header class="page-head">
+        <div>
+          <h1>Tiến độ</h1>
+          <p>Xem con đang cần củng cố phần nào và bước chiến lược hiện tại — không quy đổi thành một điểm tổng hợp giả.</p>
+        </div>
+      </header>
+      <div id="progressContent" class="loading-state">Đang tải tiến độ…</div>
+      <div class="advanced-entry">
+        <div>
+          <b>Cần tạo bài, chấm bài hoặc quản trị hệ thống?</b>
+          <span>Các công cụ kỹ thuật vẫn được giữ nguyên nhưng không nằm ở luồng chính.</span>
+        </div>
+        <button type="button" data-jump="advanced">Mở Công cụ nâng cao</button>
+      </div>
+    </section>
+
+    <section id="advanced" class="view">
+      <header class="page-head">
+        <div>
+          <button type="button" class="back-link" data-jump="todo">← Quay lại Cần làm</button>
+          <h1>Công cụ nâng cao</h1>
+          <p>Tạo bài, kiểm tra, chấm bài và quản trị. Các thao tác ở đây giữ nguyên quy tắc NTL6 hiện có.</p>
+        </div>
+      </header>
+
+      <details class="advanced-block" open>
+        <summary>Tạo bài cho con</summary>
+        <div class="advanced-content">
+          <div class="advanced-subsection">
+            <h2>Kiểm tra đầu vào</h2>
+            <div class="action-row">
+              <button type="button" data-baseline="MATH">Toán</button>
+              <button type="button" data-baseline="VIETNAMESE">Tiếng Việt</button>
+              <button type="button" data-baseline="ENGLISH">Tiếng Anh</button>
+            </div>
+            <div id="baselinePreview"></div>
+          </div>
+
+          <form id="assessmentForm" class="form-grid advanced-subsection">
+            <h2 class="wide">Bài luyện</h2>
+            <label>Môn
+              <select id="subjectInput">
+                <option value="MATH">Toán</option>
+                <option value="VIETNAMESE">Tiếng Việt</option>
+                <option value="ENGLISH">Tiếng Anh</option>
+              </select>
+            </label>
+            <label>Kiểu luyện
+              <select id="purposeInput">
+                <option value="PRACTICE">Luyện tập</option>
+                <option value="REPAIR">Sửa điểm yếu</option>
+              </select>
+            </label>
+            <label class="wide">Kiến thức / kỹ năng <select id="conceptInput"></select></label>
+            <label>Số câu <input id="itemCountInput" type="number" min="1" max="30" value="5"></label>
+            <label>Phút <input id="timeInput" type="number" min="1" max="120" value="15"></label>
+            <button class="primary wide" type="submit">Tạo bài luyện xem trước</button>
+            <div id="assessmentPreview" class="wide"></div>
+          </form>
+
+          <form id="checkAssessmentForm" class="form-grid advanced-subsection">
+            <h2 class="wide">Bài kiểm tra</h2>
+            <label>Môn
+              <select id="checkSubjectInput">
+                <option value="MATH">Toán</option>
+                <option value="VIETNAMESE">Tiếng Việt</option>
+                <option value="ENGLISH">Tiếng Anh</option>
+              </select>
+            </label>
+            <label>Mục đích
+              <select id="checkPurposeInput">
+                <option value="DIAGNOSTIC">Chẩn đoán</option>
+                <option value="WEEKLY_CHECK">Kiểm tra tuần</option>
+                <option value="MOCK">Đề mô phỏng</option>
+              </select>
+            </label>
+            <label class="wide">Kiến thức / kỹ năng <select id="checkConceptInput"></select></label>
+            <label>Số câu <input id="checkItemCountInput" type="number" min="1" max="30" value="5"></label>
+            <label>Phút <input id="checkTimeInput" type="number" min="1" max="120" value="15"></label>
+            <button class="primary wide" type="submit">Tạo bài kiểm tra xem trước</button>
+            <div id="checkAssessmentPreview" class="wide"></div>
+          </form>
+
+          <form id="recheckForm" class="form-grid advanced-subsection">
+            <h2 class="wide">Kiểm tra lại bằng bài mới</h2>
+            <label>Môn
+              <select id="recheckSubject">
+                <option value="MATH">Toán</option>
+                <option value="VIETNAMESE">Tiếng Việt</option>
+                <option value="ENGLISH">Tiếng Anh</option>
+              </select>
+            </label>
+            <label class="wide">Kiến thức / kỹ năng <select id="recheckConcept"></select></label>
+            <label>Số câu <input id="recheckCount" type="number" min="1" max="10" value="2"></label>
+            <label>Phút <input id="recheckTime" type="number" min="1" max="60" value="10"></label>
+            <button class="primary wide" type="submit">Tạo bài kiểm tra lại</button>
+            <div id="recheckPreview" class="wide"></div>
+          </form>
+        </div>
+      </details>
+
+      <details class="advanced-block">
+        <summary>Chấm bài đã làm</summary>
+        <div class="advanced-content">
+          <div class="inline-form">
+            <label>Mã bài kiểm tra <input id="gradeAssessmentId" placeholder="Ví dụ: ASMT-..."></label>
+            <button id="loadGradeAssessment" type="button">Mở bài để chấm</button>
+          </div>
+          <div id="gradeContent" class="stack"></div>
+        </div>
+      </details>
+
+      <details class="advanced-block">
+        <summary>Quản trị NTL6</summary>
+        <div class="advanced-content action-row">
+          <button type="button" data-jump="bank">Ngân hàng câu hỏi</button>
+          <button type="button" data-jump="target">Mục tiêu NTL6</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="bank" class="view">
+      <header class="page-head">
+        <div>
+          <button type="button" class="back-link" data-jump="advanced">← Công cụ nâng cao</button>
+          <h1>Ngân hàng câu hỏi</h1>
+        </div>
+      </header>
+      <div id="bankContent" class="loading-state">Đang tải ngân hàng…</div>
+    </section>
+
+    <section id="target" class="view">
+      <header class="page-head">
+        <div>
+          <button type="button" class="back-link" data-jump="advanced">← Công cụ nâng cao</button>
+          <h1>Mục tiêu NTL6</h1>
+        </div>
+        <button id="refreshTarget" type="button">Làm mới nguồn hiện có</button>
+      </header>
+      <div id="targetContent" class="loading-state">Đang tải mục tiêu…</div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

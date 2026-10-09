@@ -1,0 +1,38 @@
+{
+  "fixture_id": "T2-F05-CORRECTION-SUPERSESSION",
+  "purpose": "A grading correction must append a revision, supersede the prior interpretation and trigger rebuild without erasing historical decisions.",
+  "original_record": {
+    "record_id": "ledger-f05-original",
+    "record_type": "EVIDENCE_OPPORTUNITY",
+    "semantic_result": "INCORRECT",
+    "status": "HELD",
+    "reason": "AI grading disputed"
+  },
+  "correction": {
+    "contract_version": "LEDGER_CORRECTION/1.0",
+    "correction_id": "corr-f05",
+    "target_record_id": "ledger-f05-original",
+    "action": "SUPERSEDE",
+    "reason": "Human review found the learner answer valid under the approved rubric.",
+    "actor": "PARENT",
+    "created_at": "2026-09-04T11:00:00+07:00",
+    "replacement_record_id": "ledger-f05-replacement",
+    "affected_snapshot_ids": ["snapshot-before-f05"],
+    "affected_decision_ids": ["decision-before-f05"],
+    "rebuild_required": true
+  },
+  "replacement_record": {
+    "record_id": "ledger-f05-replacement",
+    "record_type": "EVIDENCE_OPPORTUNITY",
+    "semantic_result": "CORRECT",
+    "status": "ACTIVE",
+    "supersedes_record_id": "ledger-f05-original"
+  },
+  "expected_contract_behavior": {
+    "silent_overwrite": false,
+    "original_history_preserved": true,
+    "current_state_rebuild_required": true,
+    "undelivered_invalid_plan_may_be_cancelled": true,
+    "delivered_historical_decision_remains_auditable": true
+  }
+}

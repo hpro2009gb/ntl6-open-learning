@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/QUESTION_LIFECYCLE_EVENT/1.0",
+  "title": "QUESTION_LIFECYCLE_EVENT/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "event_id",
+    "item_id",
+    "previous_state",
+    "new_state",
+    "actor",
+    "validation_refs",
+    "reason",
+    "occurred_at",
+    "item_fingerprint",
+    "family_signature"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "QUESTION_LIFECYCLE_EVENT/1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "item_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "previous_state": {
+      "enum": [
+        "NONE",
+        "GENERATED_CANDIDATE",
+        "VALIDATED",
+        "PROMOTED",
+        "RETIRED"
+      ]
+    },
+    "new_state": {
+      "enum": [
+        "GENERATED_CANDIDATE",
+        "VALIDATED",
+        "PROMOTED",
+        "RETIRED"
+      ]
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "validation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "item_fingerprint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family_signature": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

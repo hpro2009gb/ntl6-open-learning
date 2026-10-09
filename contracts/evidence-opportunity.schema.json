@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ntl6.local/contracts/EVIDENCE_OPPORTUNITY/1.0",
+  "title": "EVIDENCE_OPPORTUNITY/1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version","evidence_id","session_id","opportunity_id","learner_id","source_identity","observed_at","imported_at","timezone","provenance","target","result","help","attempt","conditions","interpretation","data_status"],
+  "properties": {
+    "contract_version": {"const": "EVIDENCE_OPPORTUNITY/1.0"},
+    "evidence_id": {"type": "string", "minLength": 1},
+    "session_id": {"type": "string", "minLength": 1},
+    "opportunity_id": {"type": "string", "minLength": 1},
+    "learner_id": {"type": "string", "minLength": 1, "description": "Pseudonymous learner identifier only."},
+    "source_identity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["origin_id","reporting_channel","dedup_key"],
+      "properties": {
+        "origin_id": {"type": "string", "minLength": 1},
+        "reporting_channel": {"type": "string", "minLength": 1},
+        "dedup_key": {"type": "string", "minLength": 1}
+      }
+    },
+    "observed_at": {"oneOf": [{"type":"string","format":"date-time"},{"const":"UNKNOWN"}]},
+    "imported_at": {"type": "string", "format": "date-time"},
+    "timezone": {"type": "string", "minLength": 1},
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_kind","raw_ref","raw_locator","capture_completeness"],
+      "properties": {
+        "source_kind": {"enum":["AGENT_CHAT","PARENT_AUDIO","PARENT_NOTE","PHOTO","UNICLASS","ISMART","SCHOOL","OTHER"]},
+        "raw_ref": {"type":"string","minLength":1},
+        "raw_locator": {"type":"string","minLength":1},
+        "capture_completeness": {"enum":["FULL_VISIBLE_SCOPE","PARTIAL","UNKNOWN"]}
+      }
+    },
+    "target": {
+      "type":"object", "additionalProperties":false,
+      "required":["concept_id","concept_version","item_id","item_family","rubric_ref","rubric_version","scope","relative_difficulty"],
+      "properties": {
+        "concept_id": {"type":"string","minLength":1},
+        "concept_version": {"type":"string","minLength":1},
+        "item_id": {"type":"string","minLength":1},
+        "item_family": {"type":"string","minLength":1},
+        "rubric_ref": {"type":"string","minLength":1},
+        "rubric_version": {"type":"string","minLength":1},
+        "scope": {"type":"string","minLength":1},
+        "relative_difficulty": {"type":"string","minLength":1}
+      }
+    },
+    "result": {
+      "type":"object", "additionalProperties":false,
+      "required":["response_ref","criterion_result","grader","grading_verification_status"],
+      "properties": {
+        "response_ref": {"type":"string","minLength":1},
+        "criterion_result": {"enum":["CORRECT","PARTIAL","INCORRECT","UNRESOLVED"]},
+        "grader": {"type":"string","minLength":1},
+        "grading_verification_status": {"enum":["VERIFIED","PROPOSED","UNRESOLVED","NOT_APPLICABLE"]}
+      }
+    },
+    "help": {
+      "type":"object", "additionalProperties":false,
+      "required":["level","source","timing","observation_basis"],
+      "properties": {
+        "level": {"enum":["NONE_OBSERVED","GENERAL_PROMPT","TARGET_HINT","WORKED_STEP_OR_ANSWER","UNKNOWN"]},
+        "source": {"type":"string","minLength":1},
+        "timing": {"type":"string","minLength":1},
+        "observation_basis": {"type":"string","minLength":1}
+      }
+    },
+    "attempt": {
+      "type":"object", "additionalProperties":false,
+      "required":["first_attempt","retry_relation","answer_exposure"],
+      "properties": {
+        "first_attempt": {"enum":["YES","NO","UNKNOWN"]},
+        "retry_relation": {"enum":["SAME_ITEM","SAME_FAMILY","FRESH","UNKNOWN"]},
+        "answer_exposure": {"enum":["NONE_OBSERVED","PARTIAL","WORKED_ANSWER","UNKNOWN"]}
+      }
+    },
+    "conditions": {
+      "type":"object", "additionalProperties":false,
+      "required":["time_limit","interruption","fatigue","response_modality"],
+      "properties": {
+        "time_limit": {"type":"string","minLength":1},
+        "interruption": {"enum":["NONE_OBSERVED","OBSERVED","UNKNOWN"]},
+        "fatigue": {"enum":["NONE_OBSERVED","OBSERVED","UNKNOWN"]},
+        "response_modality": {"type":"string","minLength":1}
+      }
+    },
+    "thinking_tags": {
+      "type":"array", "uniqueItems":true,
+      "items":{"enum":["EXPLAIN_WHY","FIND_EVIDENCE","CHECK_ASSUMPTION","ALTERNATIVE_METHOD","SELF_CHECK","DISTINGUISH_FACT_OPINION","REVISE_CONCLUSION"]}
+    },
+    "interpretation": {
+      "type":"object", "additionalProperties":false,
+      "required":["error_hypothesis","evidence_span","transfer_type","origin","status","interpretation_version"],
+      "properties": {
+        "error_hypothesis": {"enum":["CONCEPT_GAP","PREREQUISITE_GAP","PROCEDURE_ERROR","STRATEGY","MISREAD_QUESTION","CALCULATION_ERROR","LANGUAGE_CONFUSION","CARELESS_ERROR","TIME","UNKNOWN"]},
+        "evidence_span": {"type":"string","minLength":1},
+        "transfer_type": {"type":"string","minLength":1},
+        "origin": {"enum":["AI","HUMAN","RULE"]},
+        "status": {"enum":["PROPOSED","VERIFIED","UNRESOLVED"]},
+        "interpretation_version": {"type":"string","minLength":1}
+      }
+    },
+    "data_status": {
+      "type":"object", "additionalProperties":false,
+      "required":["status","supersedes_id","reason","actor","changed_at"],
+      "properties": {
+        "status": {"enum":["ACTIVE","HELD","SUPERSEDED","RETRACTED"]},
+        "supersedes_id": {"type":"string","minLength":1},
+        "reason": {"type":"string","minLength":1},
+        "actor": {"type":"string","minLength":1},
+        "changed_at": {"oneOf":[{"type":"string","format":"date-time"},{"const":"NOT_APPLICABLE"}]}
+      }
+    }
+  }
+}
